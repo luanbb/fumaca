@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efeito Smoky Curvo Lento</title>
+    <style>
+        /* Reset básico e fundo preto */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Arial Black', Gadget, sans-serif;
+            user-select: none;
+        }
+
+        /* Container da palavra */
+        .word {
+            display: flex;
+            cursor: pointer;
+        }
+
+        /* Estilização de cada letra */
+        .letter {
+            color: #fff;
+            font-size: 5rem; /* Tamanho reduzido (antes era 8rem) */
+            letter-spacing: 8px;
+            display: inline-block;
+            
+            /* Transição mais lenta: mudou de 0.8s para 1.5s */
+            transition: 
+                opacity 1.5s ease-out, 
+                transform 1.5s ease-out, 
+                filter 1.5s ease-out;
+            
+            /* Estado inicial */
+            opacity: 1;
+            transform: translate(0, 0) rotate(0deg);
+            filter: blur(0px);
+        }
+
+        /* --- ESTADO: MOUSE PASSA POR CIMA (HOVER) --- */
+        .word:hover .letter {
+            opacity: 0;
+            filter: blur(20px); /* Desfoque um pouco maior para combinar com a lentidão */
+            transform: translate(120px, -180px) rotate(45deg); /* Curva suave para cima e direita */
+        }
+
+        /* Atraso para SUMIR (Mais espaçado para dar o efeito de um por um bem lento) */
+        .word:hover .letter:nth-child(1) { transition-delay: 0.0s; } /* S */
+        .word:hover .letter:nth-child(2) { transition-delay: 0.3s; } /* M */
+        .word:hover .letter:nth-child(3) { transition-delay: 0.6s; } /* O */
+        .word:hover .letter:nth-child(4) { transition-delay: 0.9s; } /* K */
+        .word:hover .letter:nth-child(5) { transition-delay: 1.2s; } /* Y */
+
+
+        /* --- ESTADO: MOUSE SAI (VOLTA AO NORMAL) --- */
+        /* Atraso para VOLTAR na mesma ordem (S -> Y) */
+        .word .letter:nth-child(1) { transition-delay: 0.0s; } /* S */
+        .word .letter:nth-child(2) { transition-delay: 0.3s; } /* M */
+        .word .letter:nth-child(3) { transition-delay: 0.6s; } /* O */
+        .word .letter:nth-child(4) { transition-delay: 0.9s; } /* K */
+        .word .letter:nth-child(5) { transition-delay: 1.2s; } /* Y */
+
+    </style>
+</head>
+<body>
+
+    <div class="word">
+        <span class="letter">S</span>
+        <span class="letter">M</span>
+        <span class="letter">O</span>
+        <span class="letter">K</span>
+        <span class="letter">Y</span>
+    </div>
+
+</body>
+</html>
